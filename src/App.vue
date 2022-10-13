@@ -1,6 +1,16 @@
 <template>
   <h1>{{title}}</h1>
-  <Modal />
+  <p>welcome!!</p>
+  <teleport to='modals' v-if="showModal">
+    <Modal theme="sale" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">signup</a>
+      </template>
+      <h1>signup modal for vue</h1>
+      <p>half price machine swag!</p>
+    </Modal>
+  </teleport>
+  <button @click="toggleModal">show modal</button>
 </template>
 
 <script>
@@ -14,7 +24,13 @@ export default {
   },
   data(){
     return {
-      title: "my vue application"
+      title: "my vue application",
+      showModal:false
+    }
+  },
+  methods:{
+    toggleModal(){
+      this.showModal = !this.showModal
     }
   }
 }
